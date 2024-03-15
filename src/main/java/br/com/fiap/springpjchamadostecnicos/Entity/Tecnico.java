@@ -27,13 +27,24 @@ public class Tecnico {
     private  String nome;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(
-            name = "ESPECIALIDADES",
-            referencedColumnName = "ID_ESPECIALIDADE",
-            foreignKey = @ForeignKey(
-                    name = "FK_ESPECIALIDADE_TECNICO"
-            )
+    @JoinTable(
+            name =  "TB ESPECIALIDADES_TECNICO",
+            joinColumns = {
+                    @JoinColumn(
+                            name = "TECNICO",
+                            referencedColumnName = "ID_TECNICO",
+                            foreignKey = @ForeignKey(name = "FK_TECNICO_ESPECIALIDADE")
+                    )
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(
+                            name = "ESPECIALIDADE",
+                            referencedColumnName = "ID_ESPECIALIDADE",
+                            foreignKey = @ForeignKey(name = "FK_ESPECIALIDADE_TECNICO")
+                    )
+            }
     )
+
     private Set<Especialidade> especialidades = new LinkedHashSet<>();
 
 

@@ -26,6 +26,7 @@ public class Chamado {
     @Column(name = "TL_CHAMADO")
     private String titulo;
 
+    @Column(name = "DC_CHAMADO")
     private String descricao;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
@@ -56,7 +57,6 @@ public class Chamado {
                     name = "FK_ESPECIALIDADE_CHAMADO"
             )
     )
-
     private Especialidade especialidade;
 
     private LocalDateTime dataAbertura;
